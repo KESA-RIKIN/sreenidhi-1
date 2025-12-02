@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday, Sreenidhi! 🎉</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Confetti background overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.7) 2px, transparent 0),
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,0.7) 2px, transparent 0),
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.7) 3px, transparent 0),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.7) 2px, transparent 0),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 3px, transparent 0);
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    /* Decorative side balloons */
+    .side-balloon {
+      position: fixed;
+      width: 70px;
+      height: 95px;
+      border-radius: 50% 50% 45% 45%;
+      background: rgba(255, 255, 255, 0.3);
+      z-index: 0;
+      animation: float 6s ease-in-out infinite alternate;
+    }
+
+    .side-balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 25px;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .side-balloon.left {
+      left: 5%;
+      top: 20%;
+      animation-delay: 0.5s;
+    }
+
+    .side-balloon.right {
+      right: 4%;
+      top: 40%;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-25px); }
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #4b2c3b;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    #main {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 20px;
+      padding: 18px 18px 24px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    #balloon-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 280px;
+    }
+
+    .balloon {
+      width: 110px;
+      height: 150px;
+      background: radial-gradient(circle at 30% 25%, #ffe0f4, #ff6fa9);
+      border-radius: 50% 50% 45% 45%;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .balloon::before {
+      content: "";
+      position: absolute;
+      top: 25px;
+      left: 28px;
+      width: 24px;
+      height: 34px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      filter: blur(1px);
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 35px;
+      background: #b37b8e;
+    }
+
+    .balloon:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    }
+
+    .balloon.popping {
+      animation: pop 0.35s ease forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    .photo-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .photo-card img {
+      width: 200px;
+      height: 200px;
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.25);
+    }
+
+    .photo-caption {
+      font-size: 0.88rem;
+      color: #5a3245;
+      background: rgba(255,240,248,0.95);
+      padding: 6px 12px;
+      border-radius: 999px;
+      max-width: 95%;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    #next-btn {
+      margin-top: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+      color: #4b1d2b;
+      font-size: 0.9rem;
+      font-weight: bold;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    #next-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+    }
+
+    #progress {
+      text-align: center;
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: #7c4559;
+    }
+
+    #final-message {
+      margin-top: 14px;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    #final-message h2 {
+      color: #4b2c3b;
+      margin-bottom: 6px;
+    }
+
+    #final-message p {
+      font-size: 0.9rem;
+      color: #5a3245;
+      margin: 4px 0;
+      line-height: 1.4rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<!-- Background music (YouTube hidden embed) -->
+<iframe
+  width="0"
+  height="0"
+  src="https://www.youtube.com/embed/8QF9hM1MQwc?autoplay=1&loop=1&playlist=8QF9hM1MQwc"
+  frameborder="0"
+  allow="autoplay"
+></iframe>
+
+  <!-- Decorative side balloons -->
+  <div class="side-balloon left"></div>
+  <div class="side-balloon right"></div>
+
+  <header>
+    <h1>🎂 Happy Birthday, Sreenidhi! 🎂</h1>
+  </header>
+
+  <div id="main">
+    <div id="balloon-stage">
+      <div id="balloon" class="balloon"></div>
+
+      <div id="photo-card" class="photo-card hidden">
+        <img id="photo-img" src="" alt="">
+        <div id="photo-caption" class="photo-caption"></div>
+        <button id="next-btn">Next 🎈</button>
+      </div>
+    </div>
+
+    <div id="progress">Balloon <span id="current-index">1</span> of <span id="total-count">19</span></div>
+
+    <div id="final-message" class="hidden">
+      <h2>💛 That’s all 19, Sreenidhi! 💛</h2>
+      <p>
+        I might not have many photos <i>with</i> you, but I definitely have a lot <i>of</i> you –
+        and that’s enough proof of how special you are 😄
+      </p>
+      <p>
+        Thanks for being such a fun and genuine friend.
+        I hope this year brings you so many reasons to smile, new memories and more pictures to save 📸✨
+      </p>
+      <p>
+        Keep shining, keep smiling and keep unintentionally winning every photo you take. 💫
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 👉 Update these to your real photo filenames if needed
+    const items = [
+  { photo: "photo1.jpeg", caption: "Proof that you can never take a bad photo 😌" },
+  { photo: "photo2.jpeg", caption: "One of those pics where you look effortlessly cute." },
+  { photo: "photo3.jpeg", caption: "Main character energy ✨" },
+  { photo: "photo4.jpeg", caption: "Camera loves you." },
+  { photo: "photo5.jpeg", caption: "Smile = Day fixed 💛" },
+  { photo: "photo6.jpeg", caption: "Another casual 10/10 shot 😌" },
+  { photo: "photo7.jpeg", caption: "Pretty without trying." },
+  { photo: "photo8.jpeg", caption: "One of my favs." },
+  { photo: "photo9.jpeg", caption: "Aesthetic level: max." },
+  { photo: "photo10.jpeg", caption: "Queen of expressions 👑" },
+  { photo: "photo11.jpeg", caption: "Effortlessly photogenic." },
+  { photo: "photo12.jpeg", caption: "Your aesthetic always wins." },
+  { photo: "photo13.jpeg", caption: "This one deserves a wallpaper spot." },
+  { photo: "photo14.jpeg", caption: "Caught being unintentionally perfect." },
+  { photo: "photo15.jpeg", caption: "Certified iconic 📸" },
+  { photo: "photo16.jpeg", caption: "Just another episode of looking too good." },
+  { photo: "photo17.jpeg", caption: "You're literally the main character." },
+  { photo: "photo18.jpeg", caption: "I didn’t choose the pic order — beauty did 😌" },
+  { photo: "photo19.jpeg", caption: "Had to end with one of the best ones 💫" }
+];
+
+
+    const balloonEl = document.getElementById("balloon");
+    const photoCardEl = document.getElementById("photo-card");
+    const photoImgEl = document.getElementById("photo-img");
+    const photoCaptionEl = document.getElementById("photo-caption");
+    const nextBtn = document.getElementById("next-btn");
+    const currentIndexSpan = document.getElementById("current-index");
+    const totalCountSpan = document.getElementById("total-count");
+    const finalMessageEl = document.getElementById("final-message");
+    const music = document.getElementById("bg-music");
+
+    let current = 0;
+    totalCountSpan.textContent = items.length;
+
+
+    function showBalloon() {
+      balloonEl.classList.remove("hidden");
+      balloonEl.classList.remove("popping");
+      photoCardEl.classList.add("hidden");
+      currentIndexSpan.textContent = current + 1;
+    }
+
+    function showPhoto() {
+      const item = items[current];
+      photoImgEl.src = item.photo;
+      photoCaptionEl.textContent = item.caption || "";
+      photoCardEl.classList.remove("hidden");
+    }
+
+    balloonEl.addEventListener("click", () => {
+      balloonEl.classList.add("popping");
+      setTimeout(() => {
+        balloonEl.classList.add("hidden");
+        showPhoto();
+      }, 350);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      current++;
+      if (current < items.length) {
+        showBalloon();
+      } else {
+        document.getElementById("balloon-stage").classList.add("hidden");
+        finalMessageEl.classList.remove("hidden");
+      }
+    });
+
+    // Start with first balloon
+    showBalloon();
+  </script>
+</body>
+</html>
